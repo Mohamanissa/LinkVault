@@ -67,7 +67,7 @@ export default function AdminDashboard() {
       </nav>
 
       <main className="max-w-6xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-8">📊 Dashboard Admin</h1>
+        <h1 className="text-3xl font-bold mb-8">Dashboard Admin</h1>
 
         {loading ? (
           <p className="text-neutral-500">Chargement...</p>

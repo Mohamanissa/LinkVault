@@ -3,11 +3,11 @@ import WhatsAppButton from '../components/WhatsAppButton';
 
 export default function LandingPage() {
   const categories = [
-    { icon: '🎌', name: 'Animés', desc: 'Streaming légal et officiel' },
-    { icon: '🎥', name: 'Films', desc: 'Plateformes de streaming' },
-    { icon: '🎮', name: 'Jeux vidéo', desc: 'Boutiques et stores' },
-    { icon: '🎓', name: 'Certifications', desc: 'Formations par filière' },
-    { icon: '📦', name: 'Autres', desc: 'Divers liens utiles' },
+    { icon: '', name: 'Animés', desc: 'Streaming légal et officiel' },
+    { icon: '', name: 'Films', desc: 'Plateformes de streaming' },
+    { icon: '', name: 'Jeux vidéo', desc: 'Boutiques et stores' },
+    { icon: '', name: 'Certifications', desc: 'Formations par filière' },
+    { icon: '', name: 'Autres', desc: 'Divers liens utiles' },
   ];
 
   return (
@@ -27,7 +27,7 @@ export default function LandingPage() {
       <main className="flex-1">
         <section className="max-w-4xl mx-auto px-4 py-20 text-center">
           <div className="inline-block bg-red-600/10 border border-red-600/30 text-red-500 text-xs font-mono px-3 py-1 rounded-full mb-6">
-            🔒 Liens vérifiés et sécurisés
+             Liens vérifiés et sécurisés
           </div>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 tracking-tight">
            <span className="text-red-500">BIENVENUE SUR LinkVault</span>

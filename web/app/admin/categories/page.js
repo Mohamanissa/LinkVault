@@ -33,6 +33,7 @@ export default function AdminCategoriesPage() {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     load();
   }, []);
 
@@ -137,7 +138,7 @@ export default function AdminCategoriesPage() {
       <main className="max-w-6xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-3xl font-bold">📂 Catégories</h1>
+            <h1 className="text-3xl font-bold"> Catégories</h1>
             <p className="text-neutral-400 text-sm mt-1">
               {categories.length} catégorie{categories.length > 1 ? 's' : ''}
             </p>
