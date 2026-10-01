@@ -3,14 +3,14 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🌱 Seeding LinkVault...');
+  console.log(' Seeding LinkVault...');
 
   const categories = [
-    { slug: 'anime', name: 'Animés', icon: '🎌', color: '#ff6b9d', order: 1, description: 'Animés japonais et asiatiques' },
-    { slug: 'movie', name: 'Films', icon: '🎥', color: '#4ecdc4', order: 2, description: 'Films et séries' },
-    { slug: 'game', name: 'Jeux vidéo', icon: '🎮', color: '#95e1d3', order: 3, description: 'Jeux PC, console et mobile' },
-    { slug: 'certification', name: 'Certifications', icon: '🎓', color: '#f9ca24', order: 4, description: 'Certifications professionnelles par filière' },
-    { slug: 'other', name: 'Autres', icon: '📦', color: '#a29bfe', order: 5, description: 'Divers' },
+    { slug: 'anime', name: 'Animés', icon: '', color: '#ff6b9d', order: 1, description: 'Animés japonais et asiatiques' },
+    { slug: 'movie', name: 'Films', icon: '', color: '#4ecdc4', order: 2, description: 'Films et séries' },
+    { slug: 'game', name: 'Jeux vidéo', icon: '', color: '#95e1d3', order: 3, description: 'Jeux PC, console et mobile' },
+    { slug: 'certification', name: 'Certifications', icon: '', color: '#f9ca24', order: 4, description: 'Certifications professionnelles par filière' },
+    { slug: 'other', name: 'Autres', icon: '', color: '#a29bfe', order: 5, description: 'Divers' },
   ];
 
   for (const cat of categories) {
