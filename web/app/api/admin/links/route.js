@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { isAdmin } from '@/lib/adminGuard';
+import { isUrlSafe } from '@/lib/safeBrowsing';
 
 export async function POST(request) {
   if (!(await isAdmin())) {
@@ -14,10 +15,28 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Champs requis manquants' }, { status: 400 });
   }
 
+  // Validation du format URL
   try {
-    new URL(url);
+    const parsed = new URL(url);
+    if (!['http:', 'https:'].includes(parsed.protocol)) {
+      return NextResponse.json(
+        { error: 'Seuls les protocoles HTTP et HTTPS sont autorisés' },
+        { status: 400 }
+      );
+    }
   } catch {
     return NextResponse.json({ error: 'URL invalide' }, { status: 400 });
+  }
+
+  // Vérification Google Safe Browsing
+  const check = await isUrlSafe(url);
+  if (!check.safe) {
+    return NextResponse.json(
+      {
+        error: `Ce lien a été identifié comme dangereux par Google Safe Browsing. Menaces détectées : ${check.threats?.join(', ')}`,
+      },
+      { status: 400 }
+    );
   }
 
   const link = await prisma.link.create({
