@@ -15,7 +15,6 @@ export async function POST(request) {
     return NextResponse.json({ error: 'Champs requis manquants' }, { status: 400 });
   }
 
-  // Validation du format URL
   try {
     const parsed = new URL(url);
     if (!['http:', 'https:'].includes(parsed.protocol)) {
@@ -28,12 +27,11 @@ export async function POST(request) {
     return NextResponse.json({ error: 'URL invalide' }, { status: 400 });
   }
 
-  // Vérification Google Safe Browsing
   const check = await isUrlSafe(url);
   if (!check.safe) {
     return NextResponse.json(
       {
-        error: `Ce lien a été identifié comme dangereux par Google Safe Browsing. Menaces détectées : ${check.threats?.join(', ')}`,
+        error: `Ce lien a été identifié comme dangereux par Google Safe Browsing. Menaces : ${check.threats?.join(', ')}`,
       },
       { status: 400 }
     );

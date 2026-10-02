@@ -2,17 +2,14 @@ export async function isUrlSafe(url) {
   const apiKey = process.env.GOOGLE_SAFE_BROWSING_KEY;
 
   if (!apiKey) {
-    console.warn('⚠️ Clé GOOGLE_SAFE_BROWSING_KEY manquante. Vérification ignorée.');
+    console.warn('⚠️ Clé GOOGLE_SAFE_BROWSING_KEY manquante.');
     return { safe: true, reason: 'no_api_key' };
   }
 
   const apiUrl = `https://safebrowsing.googleapis.com/v4/threatMatches:find?key=${apiKey}`;
 
   const requestBody = {
-    client: {
-      clientId: 'linkvault',
-      clientVersion: '1.0.0',
-    },
+    client: { clientId: 'linkvault', clientVersion: '1.0.0' },
     threatInfo: {
       threatTypes: [
         'MALWARE',
