@@ -69,10 +69,10 @@ export default function App() {
 
         <ScrollView contentContainerStyle={styles.homeScroll}>
           <View style={styles.homeHeader}>
-            <Text style={styles.homeLogo}>🔐</Text>
+            <Text style={styles.homeLogo}></Text>
             <Text style={styles.homeBrand}>LinkVault</Text>
             <View style={styles.badge}>
-              <Text style={styles.badgeText}>🔒 Liens vérifiés et sécurisés</Text>
+              <Text style={styles.badgeText}> Liens vérifiés et sécurisés</Text>
             </View>
             <Text style={styles.homeTitle}>
               Tous vos liens sécurisés au même endroit.
@@ -127,7 +127,7 @@ export default function App() {
         </ScrollView>
 
         <TouchableOpacity style={styles.whatsapp} onPress={openWhatsApp}>
-          <Text style={styles.whatsappIcon}>💬</Text>
+          <Text style={styles.whatsappIcon}></Text>
         </TouchableOpacity>
       </SafeAreaView>
     );
@@ -171,7 +171,7 @@ export default function App() {
         <TouchableOpacity onPress={() => setScreen('home')}>
           <Text style={styles.backBtn}>← Accueil</Text>
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>📊 Dashboard</Text>
+        <Text style={styles.headerTitle}>Dashboard</Text>
         <View style={{ width: 70 }} />
       </View>
 
@@ -252,7 +252,7 @@ export default function App() {
       />
 
       <TouchableOpacity style={styles.whatsapp} onPress={openWhatsApp}>
-        <Text style={styles.whatsappIcon}>💬</Text>
+        <Text style={styles.whatsappIcon}></Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
