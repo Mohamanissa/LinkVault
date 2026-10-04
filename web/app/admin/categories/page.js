@@ -15,7 +15,7 @@ export default function AdminCategoriesPage() {
   const [form, setForm] = useState({
     name: '',
     slug: '',
-    icon: '📦',
+    icon: '',
     color: '#a29bfe',
     description: '',
     order: 0,
@@ -82,7 +82,7 @@ export default function AdminCategoriesPage() {
       }
 
       // Reset + recharger
-      setForm({ name: '', slug: '', icon: '📦', color: '#a29bfe', description: '', order: 0 });
+      setForm({ name: '', slug: '', icon: '', color: '#a29bfe', description: '', order: 0 });
       setShowForm(false);
       await load();
     } catch (err) {
