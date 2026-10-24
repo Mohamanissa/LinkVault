@@ -52,7 +52,7 @@ export default function LandingPage() {
           {/* Boutons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link href="/dashboard" className="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-8 py-3.5 rounded-xl transition-all shadow-[0_0_20px_-5px_rgba(79,70,229,0.5)]">
-              Accéder au Dashboard
+              Accéder à LinkVault
             </Link>
             <a href="#categories" className="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/10 text-white font-medium px-8 py-3.5 rounded-xl transition-all">
               Explorer les catégories
@@ -81,7 +81,7 @@ export default function LandingPage() {
       </main>
 
       <footer className="border-t border-white/5 py-8 text-center text-sm text-neutral-600">
-        © {new Date().getFullYear()} LinkVault — Sécurité et confiance.
+        © {new Date().getFullYear()} 2026 LinkVault — Sécurité et confiance première version lv1.
       </footer>
 
       <WhatsAppButton />
