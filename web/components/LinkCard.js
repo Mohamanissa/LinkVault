@@ -19,27 +19,50 @@ export default function LinkCard({ link }) {
   return (
     <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-5 hover:border-indigo-500/30 hover:bg-white/[0.04] transition-all group flex flex-col justify-between">
       <div>
+        {/* En-tête : Catégorie et Tarif */}
         <div className="flex items-start justify-between mb-3 gap-2">
           <span className="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-2.5 py-1 rounded-md whitespace-nowrap">
             {link.category?.icon} {link.category?.name}
           </span>
-          
           <div className="flex flex-wrap justify-end gap-1.5">
             {renderPriceBadge(link.pricingType)}
-
             {link.isSecure && (
-              <span className="text-[10px] uppercase tracking-wider bg-indigo-500/10 text-indigo-400 px-2 py-1 rounded-md font-bold whitespace-nowrap">
+              <span className="text-[10px] uppercase tracking-wider bg-indigo-500/10 text-indigo-400 px-2 py-1 rounded-md font-bold whitespace-nowrap" title="Lien sécurisé">
                 ✓
               </span>
             )}
           </div>
         </div>
-        <h3 className="text-white font-semibold text-lg mb-2 group-hover:text-indigo-300 transition-colors">{link.title}</h3>
-        {link.description && (
-          <p className="text-neutral-400 text-sm line-clamp-2 mb-4">{link.description}</p>
+
+        {/* Titre */}
+        <h3 className="text-white font-semibold text-lg mb-2 group-hover:text-indigo-300 transition-colors">
+          {link.title}
+        </h3>
+
+        {/* Description */}
+        {link.description ? (
+          <p className="text-neutral-400 text-sm line-clamp-2 mb-3">
+            {link.description}
+          </p>
+        ) : (
+          <p className="text-neutral-600 text-sm italic mb-3">
+            Aucune description fournie.
+          </p>
+        )}
+
+        {/* Tags */}
+        {link.tags && (
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {link.tags.split(',').filter(t => t.trim() !== '').slice(0, 3).map((tag, index) => (
+              <span key={index} className="text-[10px] bg-white/5 text-neutral-400 px-2 py-1 rounded-md border border-white/5">
+                #{tag.trim()}
+              </span>
+            ))}
+          </div>
         )}
       </div>
       
+      {/* Bouton d'action */}
       <button
         onClick={handleClick}
         className="w-full mt-2 bg-white/5 hover:bg-indigo-600 text-white text-sm font-medium py-2.5 px-4 rounded-xl transition-colors border border-white/5 hover:border-indigo-500 flex items-center justify-center gap-2"
