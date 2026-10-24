@@ -157,7 +157,7 @@ export default function AdminCategoriesPage() {
             onSubmit={handleSubmit}
             className="bg-neutral-900 border border-neutral-800 rounded-xl p-6 mb-6 space-y-4"
           >
-            <h2 className="font-bold text-white mb-2">➕ Ajouter une catégorie</h2>
+            <h2 className="font-bold text-white mb-2"> Ajouter une catégorie</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>

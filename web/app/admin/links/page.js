@@ -68,7 +68,7 @@ export default function AdminLinksPage() {
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <Link href="/admin/dashboard" className="flex items-center gap-2">
-              <span className="text-2xl">🔐</span>
+              <span className="text-2xl"></span>
               <span className="font-bold">LinkVault Admin</span>
             </Link>
             <div className="hidden md:flex items-center gap-4 text-sm">
@@ -92,7 +92,7 @@ export default function AdminLinksPage() {
       <main className="max-w-6xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-3xl font-bold">🔗 Gestion des liens</h1>
+            <h1 className="text-3xl font-bold">Gestion des liens</h1>
             <p className="text-neutral-400 text-sm mt-1">
               {links.length} lien{links.length > 1 ? 's' : ''} au total
             </p>

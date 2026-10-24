@@ -81,7 +81,7 @@ export default function LandingPage() {
       </main>
 
       <footer className="border-t border-white/5 py-8 text-center text-sm text-neutral-600">
-        © {new Date().getFullYear()} 2026 LinkVault — Sécurité et confiance première version lv1.
+        © {new Date().getFullYear()}  LinkVault — Sécurité et confiance première version lv1.
       </footer>
 
       <WhatsAppButton />
