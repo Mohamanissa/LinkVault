@@ -1,6 +1,10 @@
 'use client';
 
+import { useState } from 'react';
+
 export default function LinkCard({ link }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const handleClick = () => {
     window.open(link.url, '_blank', 'noopener,noreferrer');
   };
@@ -8,7 +12,7 @@ export default function LinkCard({ link }) {
   const renderPriceBadge = (type) => {
     switch (type) {
       case 'paid':
-        return <span className="text-[10px] uppercase tracking-wider bg-amber-500/10 text-amber-400 px-2 py-1 rounded-md font-bold whitespace-nowrap"> Payant</span>;
+        return <span className="text-[10px] uppercase tracking-wider bg-amber-500/10 text-amber-400 px-2 py-1 rounded-md font-bold whitespace-nowrap">Payant</span>;
       case 'freemium':
         return <span className="text-[10px] uppercase tracking-wider bg-blue-500/10 text-blue-400 px-2 py-1 rounded-md font-bold whitespace-nowrap"> Freemium</span>;
       default:
@@ -39,15 +43,21 @@ export default function LinkCard({ link }) {
           {link.title}
         </h3>
 
-        {/* Description */}
-        {link.description ? (
-          <p className="text-neutral-400 text-sm line-clamp-2 mb-3">
-            {link.description}
-          </p>
-        ) : (
-          <p className="text-neutral-600 text-sm italic mb-3">
-            Aucune description fournie.
-          </p>
+        {/* Description avec bouton Voir plus / Voir moins */}
+        {link.description && (
+          <div className="mb-3">
+            <p className={`text-neutral-400 text-sm ${isExpanded ? '' : 'line-clamp-2'}`}>
+              {link.description}
+            </p>
+            {link.description.length > 80 && (
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="text-indigo-400 hover:text-indigo-300 text-xs font-medium mt-1"
+              >
+                {isExpanded ? 'Voir moins' : 'Voir plus'}
+              </button>
+            )}
+          </div>
         )}
 
         {/* Tags */}
