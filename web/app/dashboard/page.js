@@ -10,6 +10,7 @@ export default function DashboardPage() {
   const [links, setLinks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
+  const [activePrice, setActivePrice] = useState('all'); // 'all', 'free', 'paid'
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -32,7 +33,14 @@ export default function DashboardPage() {
   }, []);
 
   const filtered = links.filter((l) => {
+    // Filtre catégorie
     if (activeCategory && l.category?.slug !== activeCategory) return false;
+    
+    // Filtre prix
+    if (activePrice === 'free' && l.isPaid) return false;
+    if (activePrice === 'paid' && !l.isPaid) return false;
+
+    // Filtre recherche
     if (search) {
       const s = search.toLowerCase();
       return (
@@ -63,8 +71,10 @@ export default function DashboardPage() {
 
         <CategoryFilter
           categories={categories}
-          activeSlug={activeCategory}
-          onChange={setActiveCategory}
+          activeCategory={activeCategory}
+          onCategoryChange={setActiveCategory}
+          activePrice={activePrice}
+          onPriceChange={setActivePrice}
         />
 
         {loading ? (

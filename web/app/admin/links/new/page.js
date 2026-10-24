@@ -18,6 +18,7 @@ export default function NewLinkPage() {
     tags: '',
     platform: 'Web',
     isSecure: true,
+    isPaid: false,
   });
 
   useEffect(() => {
@@ -76,7 +77,7 @@ export default function NewLinkPage() {
       </nav>
 
       <main className="max-w-2xl mx-auto px-4 py-8">
-        <h1 className="text-2xl font-bold mb-6">➕ Ajouter un lien</h1>
+        <h1 className="text-2xl font-bold mb-6">Ajouter un lien</h1>
 
         <form onSubmit={handleSubmit} className="bg-neutral-900 border border-neutral-800 rounded-xl p-6 space-y-4">
           <div>

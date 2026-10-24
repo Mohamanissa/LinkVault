@@ -33,6 +33,7 @@ export default function AdminLinksPage() {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     load();
   }, []);
 
@@ -69,13 +70,13 @@ export default function AdminLinksPage() {
           <div className="flex items-center gap-6">
             <Link href="/admin/dashboard" className="flex items-center gap-2">
               <span className="text-2xl"></span>
-              <span className="font-bold">LinkVault Admin</span>
+              <span className="font-bold text-white">LinkVault Admin</span>
             </Link>
             <div className="hidden md:flex items-center gap-4 text-sm">
               <Link href="/admin/dashboard" className="text-neutral-400 hover:text-white">
                 Dashboard
               </Link>
-              <Link href="/admin/links" className="text-red-500">
+              <Link href="/admin/links" className="text-indigo-400 font-medium">
                 Liens
               </Link>
               <Link href="/admin/categories" className="text-neutral-400 hover:text-white">
@@ -92,14 +93,14 @@ export default function AdminLinksPage() {
       <main className="max-w-6xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-3xl font-bold">Gestion des liens</h1>
+            <h1 className="text-3xl font-bold text-white">Gestion des liens</h1>
             <p className="text-neutral-400 text-sm mt-1">
               {links.length} lien{links.length > 1 ? 's' : ''} au total
             </p>
           </div>
           <Link
             href="/admin/links/new"
-            className="bg-red-600 hover:bg-red-700 text-white text-sm font-medium px-4 py-2 rounded-lg"
+            className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg"
           >
             + Nouveau lien
           </Link>
@@ -110,7 +111,7 @@ export default function AdminLinksPage() {
           placeholder="Rechercher par titre, URL, catégorie..."
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          className="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-red-600 mb-6"
+          className="w-full bg-neutral-900 border border-neutral-800 rounded-lg px-4 py-3 text-white placeholder-neutral-500 focus:outline-none focus:border-indigo-600 mb-6"
         />
 
         {loading ? (
@@ -123,7 +124,7 @@ export default function AdminLinksPage() {
             {!filter && (
               <Link
                 href="/admin/links/new"
-                className="inline-block bg-red-600 hover:bg-red-700 text-white text-sm font-medium px-4 py-2 rounded-lg"
+                className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg"
               >
                 Créer le premier lien
               </Link>
@@ -138,6 +139,7 @@ export default function AdminLinksPage() {
                   <th className="text-left px-4 py-3 hidden md:table-cell">Catégorie</th>
                   <th className="text-left px-4 py-3 hidden lg:table-cell">URL</th>
                   <th className="text-left px-4 py-3">Clics</th>
+                  <th className="text-left px-4 py-3">Etat</th>
                   <th className="text-left px-4 py-3">Statut</th>
                   <th className="text-right px-4 py-3">Actions</th>
                 </tr>
@@ -158,9 +160,24 @@ export default function AdminLinksPage() {
                       {link.url}
                     </td>
                     <td className="px-4 py-3 text-neutral-400">{link.clicks}</td>
+                    
+                    {/* Colonne Prix */}
+                    <td className="px-4 py-3">
+                      {link.isPaid ? (
+                        <span className="text-xs bg-amber-900/30 text-amber-400 px-2 py-0.5 rounded-full font-medium">
+                           Payant
+                        </span>
+                      ) : (
+                        <span className="text-xs bg-emerald-900/30 text-emerald-400 px-2 py-0.5 rounded-full font-medium">
+                           Gratuit
+                        </span>
+                      )}
+                    </td>
+
+                    {/* Colonne Statut */}
                     <td className="px-4 py-3">
                       {link.isSecure && (
-                        <span className="text-xs bg-green-900/40 text-green-400 px-2 py-0.5 rounded-full">
+                        <span className="text-xs bg-indigo-900/40 text-indigo-400 px-2 py-0.5 rounded-full">
                           ✓ Sécurisé
                         </span>
                       )}
@@ -177,7 +194,7 @@ export default function AdminLinksPage() {
                       </a>
                       <Link
                         href={`/admin/links/${link.id}`}
-                        className="text-blue-400 hover:text-blue-300 mr-3"
+                        className="text-indigo-400 hover:text-indigo-300 mr-3"
                       >
                         Modifier
                       </Link>
