@@ -4,7 +4,6 @@ export default function CategoryFilter({ categories, activeCategory, onCategoryC
   return (
     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
       
-      {/* Filtres par catégorie */}
       <div className="flex flex-wrap gap-2">
         <button
           onClick={() => onCategoryChange(null)}
@@ -31,7 +30,6 @@ export default function CategoryFilter({ categories, activeCategory, onCategoryC
         ))}
       </div>
 
-      {/* Filtres par prix (Gratuit / Payant) */}
       <div className="flex bg-white/5 rounded-full p-1 border border-white/5 w-fit">
         <button
           onClick={() => onPriceChange('all')}
@@ -48,6 +46,14 @@ export default function CategoryFilter({ categories, activeCategory, onCategoryC
           }`}
         >
           Gratuit
+        </button>
+        <button
+          onClick={() => onPriceChange('freemium')}
+          className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all flex items-center gap-1 ${
+            activePrice === 'freemium' ? 'bg-blue-500/20 text-blue-400' : 'text-neutral-400 hover:text-blue-400'
+          }`}
+        >
+           Freemium
         </button>
         <button
           onClick={() => onPriceChange('paid')}

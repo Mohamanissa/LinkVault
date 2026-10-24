@@ -33,7 +33,6 @@ export default function AdminLinksPage() {
   }
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     load();
   }, []);
 
@@ -62,9 +61,19 @@ export default function AdminLinksPage() {
     );
   });
 
+  const renderPriceBadge = (type) => {
+    switch (type) {
+      case 'paid':
+        return <span className="text-xs bg-amber-900/30 text-amber-400 px-2 py-1 rounded-md font-medium whitespace-nowrap"> Payant</span>;
+      case 'freemium':
+        return <span className="text-xs bg-blue-900/30 text-blue-400 px-2 py-1 rounded-md font-medium whitespace-nowrap"> Freemium</span>;
+      default:
+        return <span className="text-xs bg-emerald-900/30 text-emerald-400 px-2 py-1 rounded-md font-medium whitespace-nowrap"> Gratuit</span>;
+    }
+  };
+
   return (
     <div className="min-h-screen">
-      {/* Navbar admin */}
       <nav className="border-b border-neutral-800 bg-neutral-950">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-6">
@@ -121,14 +130,6 @@ export default function AdminLinksPage() {
             <p className="text-neutral-500 mb-4">
               {filter ? 'Aucun résultat' : 'Aucun lien pour le moment'}
             </p>
-            {!filter && (
-              <Link
-                href="/admin/links/new"
-                className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg"
-              >
-                Créer le premier lien
-              </Link>
-            )}
           </div>
         ) : (
           <div className="bg-neutral-900 border border-neutral-800 rounded-xl overflow-hidden">
@@ -139,7 +140,7 @@ export default function AdminLinksPage() {
                   <th className="text-left px-4 py-3 hidden md:table-cell">Catégorie</th>
                   <th className="text-left px-4 py-3 hidden lg:table-cell">URL</th>
                   <th className="text-left px-4 py-3">Clics</th>
-                  <th className="text-left px-4 py-3">Etat</th>
+                  <th className="text-left px-4 py-3">Tarif</th>
                   <th className="text-left px-4 py-3">Statut</th>
                   <th className="text-right px-4 py-3">Actions</th>
                 </tr>
@@ -161,23 +162,13 @@ export default function AdminLinksPage() {
                     </td>
                     <td className="px-4 py-3 text-neutral-400">{link.clicks}</td>
                     
-                    {/* Colonne Prix */}
                     <td className="px-4 py-3">
-                      {link.isPaid ? (
-                        <span className="text-xs bg-amber-900/30 text-amber-400 px-2 py-0.5 rounded-full font-medium">
-                           Payant
-                        </span>
-                      ) : (
-                        <span className="text-xs bg-emerald-900/30 text-emerald-400 px-2 py-0.5 rounded-full font-medium">
-                           Gratuit
-                        </span>
-                      )}
+                      {renderPriceBadge(link.pricingType)}
                     </td>
 
-                    {/* Colonne Statut */}
                     <td className="px-4 py-3">
                       {link.isSecure && (
-                        <span className="text-xs bg-indigo-900/40 text-indigo-400 px-2 py-0.5 rounded-full">
+                        <span className="text-xs bg-indigo-900/40 text-indigo-400 px-2 py-1 rounded-md whitespace-nowrap">
                           ✓ Sécurisé
                         </span>
                       )}

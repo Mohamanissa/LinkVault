@@ -18,7 +18,7 @@ export default function NewLinkPage() {
     tags: '',
     platform: 'Web',
     isSecure: true,
-    isPaid: false,
+    pricingType: 'free',
   });
 
   useEffect(() => {
@@ -87,7 +87,7 @@ export default function NewLinkPage() {
               value={form.title}
               onChange={handleChange}
               required
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-red-600"
+              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
               placeholder="Ex: Crunchyroll"
             />
           </div>
@@ -100,7 +100,7 @@ export default function NewLinkPage() {
               value={form.url}
               onChange={handleChange}
               required
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-red-600"
+              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
               placeholder="https://..."
             />
           </div>
@@ -112,7 +112,7 @@ export default function NewLinkPage() {
               value={form.description}
               onChange={handleChange}
               rows={3}
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-red-600"
+              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
               placeholder="Description du site ou de l'app..."
             />
           </div>
@@ -124,7 +124,7 @@ export default function NewLinkPage() {
               value={form.categoryId}
               onChange={handleChange}
               required
-              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-red-600"
+              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
             >
               <option value="">— Choisir une catégorie —</option>
               {categories.map((cat) => (
@@ -142,7 +142,7 @@ export default function NewLinkPage() {
                 name="platform"
                 value={form.platform}
                 onChange={handleChange}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-red-600"
+                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
               >
                 <option value="Web">Web</option>
                 <option value="Android">Android</option>
@@ -159,22 +159,40 @@ export default function NewLinkPage() {
                 name="tags"
                 value={form.tags}
                 onChange={handleChange}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-red-600"
+                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
                 placeholder="streaming,officiel"
               />
             </div>
           </div>
 
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              name="isSecure"
-              checked={form.isSecure}
-              onChange={handleChange}
-              className="w-4 h-4 accent-red-600"
-            />
-            <span className="text-sm text-neutral-300">Lien vérifié et sécurisé</span>
-          </label>
+          <div className="grid grid-cols-2 gap-4 pt-2">
+            <div>
+              <label className="block text-sm text-neutral-400 mb-2">Type de tarif</label>
+              <select
+                name="pricingType"
+                value={form.pricingType}
+                onChange={handleChange}
+                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
+              >
+                <option value="free">Gratuit</option>
+                <option value="freemium">Freemium</option>
+                <option value="paid">Payant</option>
+              </select>
+            </div>
+            
+            <div className="flex items-end pb-3">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="isSecure"
+                  checked={form.isSecure}
+                  onChange={handleChange}
+                  className="w-4 h-4 accent-indigo-600"
+                />
+                <span className="text-sm text-neutral-300">Lien sécurisé</span>
+              </label>
+            </div>
+          </div>
 
           {error && (
             <div className="bg-red-900/20 border border-red-600/30 text-red-400 text-sm rounded-lg px-3 py-2">
@@ -186,7 +204,7 @@ export default function NewLinkPage() {
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-semibold py-2.5 rounded-lg"
+              className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-semibold py-2.5 rounded-lg"
             >
               {loading ? 'Enregistrement...' : 'Créer le lien'}
             </button>

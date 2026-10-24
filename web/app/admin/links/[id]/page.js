@@ -20,7 +20,7 @@ export default function EditLinkPage({ params }) {
     tags: '',
     platform: 'Web',
     isSecure: true,
-    isPaid: false,
+    pricingType: 'free',
     isActive: true,
   });
 
@@ -49,7 +49,7 @@ export default function EditLinkPage({ params }) {
             tags: link.tags || '',
             platform: link.platform || 'Web',
             isSecure: link.isSecure ?? true,
-            isPaid: link.isPaid ?? false,
+            pricingType: link.pricingType || 'free',
             isActive: link.isActive ?? true,
           });
         } else {
@@ -108,77 +108,77 @@ export default function EditLinkPage({ params }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#09090b] flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <p className="text-neutral-500">Chargement...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#09090b]">
-      <nav className="border-b border-white/5 bg-[#09090b]/80 backdrop-blur-md sticky top-0 z-10">
+    <div className="min-h-screen">
+      <nav className="border-b border-neutral-800 bg-neutral-950">
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center gap-4">
-          <Link href="/admin/links" className="text-neutral-400 hover:text-white transition-colors text-sm">
+          <Link href="/admin/links" className="text-neutral-400 hover:text-white">
             ← Retour
           </Link>
-          <span className="font-semibold text-white">Modifier le lien</span>
+          <span className="font-bold">Modifier le lien</span>
         </div>
       </nav>
 
       <main className="max-w-2xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-white">Modifier</h1>
+          <h1 className="text-2xl font-bold">Modifier</h1>
           <button
             onClick={handleDelete}
-            className="text-red-400 hover:text-red-300 text-sm font-medium transition-colors"
+            className="text-red-400 hover:text-red-300 text-sm"
           >
             Supprimer
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 space-y-5">
+        <form onSubmit={handleSubmit} className="bg-neutral-900 border border-neutral-800 rounded-xl p-6 space-y-4">
           <div>
-            <label className="block text-sm font-medium text-neutral-400 mb-2">Titre *</label>
+            <label className="block text-sm text-neutral-400 mb-2">Titre *</label>
             <input
               name="title"
               value={form.title}
               onChange={handleChange}
               required
-              className="w-full bg-[#09090b] border border-white/10 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-neutral-400 mb-2">URL *</label>
+            <label className="block text-sm text-neutral-400 mb-2">URL *</label>
             <input
               name="url"
               type="url"
               value={form.url}
               onChange={handleChange}
               required
-              className="w-full bg-[#09090b] border border-white/10 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-neutral-400 mb-2">Description</label>
+            <label className="block text-sm text-neutral-400 mb-2">Description</label>
             <textarea
               name="description"
               value={form.description}
               onChange={handleChange}
               rows={3}
-              className="w-full bg-[#09090b] border border-white/10 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-neutral-400 mb-2">Catégorie *</label>
+            <label className="block text-sm text-neutral-400 mb-2">Catégorie *</label>
             <select
               name="categoryId"
               value={form.categoryId}
               onChange={handleChange}
               required
-              className="w-full bg-[#09090b] border border-white/10 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
             >
               <option value="">— Choisir —</option>
               {categories.map((cat) => (
@@ -191,12 +191,12 @@ export default function EditLinkPage({ params }) {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-neutral-400 mb-2">Plateforme</label>
+              <label className="block text-sm text-neutral-400 mb-2">Plateforme</label>
               <select
                 name="platform"
                 value={form.platform}
                 onChange={handleChange}
-                className="w-full bg-[#09090b] border border-white/10 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
               >
                 <option value="Web">Web</option>
                 <option value="Android">Android</option>
@@ -207,53 +207,57 @@ export default function EditLinkPage({ params }) {
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-400 mb-2">Tags</label>
+              <label className="block text-sm text-neutral-400 mb-2">Tags</label>
               <input
                 name="tags"
                 value={form.tags}
                 onChange={handleChange}
-                className="w-full bg-[#09090b] border border-white/10 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
               />
             </div>
           </div>
 
-          <div className="flex gap-6 py-2">
-            <label className="flex items-center gap-2 cursor-pointer group">
-              <input
-                type="checkbox"
-                name="isSecure"
-                checked={form.isSecure}
+          <div className="grid grid-cols-2 gap-4 pt-2">
+            <div>
+              <label className="block text-sm text-neutral-400 mb-2">Type de tarif</label>
+              <select
+                name="pricingType"
+                value={form.pricingType}
                 onChange={handleChange}
-                className="w-4 h-4 rounded border-white/10 bg-[#09090b] text-indigo-500 focus:ring-indigo-500 focus:ring-offset-[#09090b]"
-              />
-              <span className="text-sm text-neutral-300 group-hover:text-white transition-colors">Sécurisé</span>
-            </label>
+                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-indigo-600"
+              >
+                <option value="free"> Gratuit</option>
+                <option value="freemium"> Freemium</option>
+                <option value="paid"> Payant</option>
+              </select>
+            </div>
             
-            <label className="flex items-center gap-2 cursor-pointer group">
-              <input
-                type="checkbox"
-                name="isPaid"
-                checked={form.isPaid}
-                onChange={handleChange}
-                className="w-4 h-4 rounded border-white/10 bg-[#09090b] text-amber-500 focus:ring-amber-500 focus:ring-offset-[#09090b]"
-              />
-              <span className="text-sm text-neutral-300 group-hover:text-white transition-colors">Payant</span>
-            </label>
-
-            <label className="flex items-center gap-2 cursor-pointer group">
-              <input
-                type="checkbox"
-                name="isActive"
-                checked={form.isActive}
-                onChange={handleChange}
-                className="w-4 h-4 rounded border-white/10 bg-[#09090b] text-emerald-500 focus:ring-emerald-500 focus:ring-offset-[#09090b]"
-              />
-              <span className="text-sm text-neutral-300 group-hover:text-white transition-colors">Actif</span>
-            </label>
+            <div className="flex flex-col gap-2 justify-end pb-2">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="isSecure"
+                  checked={form.isSecure}
+                  onChange={handleChange}
+                  className="w-4 h-4 accent-indigo-600"
+                />
+                <span className="text-sm text-neutral-300">Sécurisé</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="isActive"
+                  checked={form.isActive}
+                  onChange={handleChange}
+                  className="w-4 h-4 accent-green-600"
+                />
+                <span className="text-sm text-neutral-300">Actif</span>
+              </label>
+            </div>
           </div>
 
           {error && (
-            <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm rounded-xl px-4 py-3">
+            <div className="bg-red-900/20 border border-red-600/30 text-red-400 text-sm rounded-lg px-3 py-2">
               {error}
             </div>
           )}
@@ -262,13 +266,13 @@ export default function EditLinkPage({ params }) {
             <button
               type="submit"
               disabled={saving}
-              className="flex-1 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 text-white font-medium py-2.5 rounded-xl transition-colors"
+              className="flex-1 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white font-semibold py-2.5 rounded-lg"
             >
               {saving ? 'Enregistrement...' : 'Enregistrer'}
             </button>
             <Link
               href="/admin/links"
-              className="bg-white/5 hover:bg-white/10 border border-white/5 text-white font-medium px-6 py-2.5 rounded-xl transition-colors"
+              className="bg-neutral-800 hover:bg-neutral-700 text-white font-medium px-6 py-2.5 rounded-lg"
             >
               Annuler
             </Link>

@@ -5,6 +5,17 @@ export default function LinkCard({ link }) {
     window.open(link.url, '_blank', 'noopener,noreferrer');
   };
 
+  const renderPriceBadge = (type) => {
+    switch (type) {
+      case 'paid':
+        return <span className="text-[10px] uppercase tracking-wider bg-amber-500/10 text-amber-400 px-2 py-1 rounded-md font-bold whitespace-nowrap"> Payant</span>;
+      case 'freemium':
+        return <span className="text-[10px] uppercase tracking-wider bg-blue-500/10 text-blue-400 px-2 py-1 rounded-md font-bold whitespace-nowrap"> Freemium</span>;
+      default:
+        return <span className="text-[10px] uppercase tracking-wider bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-md font-bold whitespace-nowrap"> Gratuit</span>;
+    }
+  };
+
   return (
     <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-5 hover:border-indigo-500/30 hover:bg-white/[0.04] transition-all group flex flex-col justify-between">
       <div>
@@ -14,18 +25,8 @@ export default function LinkCard({ link }) {
           </span>
           
           <div className="flex flex-wrap justify-end gap-1.5">
-            {/* Badge Gratuit / Payant */}
-            {link.isPaid ? (
-              <span className="text-[10px] uppercase tracking-wider bg-amber-500/10 text-amber-400 px-2 py-1 rounded-md font-bold whitespace-nowrap">
-                 Payant
-              </span>
-            ) : (
-              <span className="text-[10px] uppercase tracking-wider bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-md font-bold whitespace-nowrap">
-                 Gratuit
-              </span>
-            )}
+            {renderPriceBadge(link.pricingType)}
 
-            {/* Badge Sécurisé */}
             {link.isSecure && (
               <span className="text-[10px] uppercase tracking-wider bg-indigo-500/10 text-indigo-400 px-2 py-1 rounded-md font-bold whitespace-nowrap">
                 ✓

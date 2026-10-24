@@ -10,7 +10,7 @@ export default function DashboardPage() {
   const [links, setLinks] = useState([]);
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState(null);
-  const [activePrice, setActivePrice] = useState('all'); // 'all', 'free', 'paid'
+  const [activePrice, setActivePrice] = useState('all');
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -33,14 +33,10 @@ export default function DashboardPage() {
   }, []);
 
   const filtered = links.filter((l) => {
-    // Filtre catégorie
     if (activeCategory && l.category?.slug !== activeCategory) return false;
     
-    // Filtre prix
-    if (activePrice === 'free' && l.isPaid) return false;
-    if (activePrice === 'paid' && !l.isPaid) return false;
+    if (activePrice !== 'all' && l.pricingType !== activePrice) return false;
 
-    // Filtre recherche
     if (search) {
       const s = search.toLowerCase();
       return (

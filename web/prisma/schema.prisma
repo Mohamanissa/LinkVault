@@ -33,7 +33,7 @@ model Link {
   tags        String   @default("")
   platform    String?
   isSecure    Boolean  @default(false)
-  isPaid      Boolean  @default(false)
+  pricingType String   @default("free")
   isActive    Boolean  @default(true)
   clicks      Int      @default(0)
 
